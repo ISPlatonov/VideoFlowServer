@@ -10,22 +10,16 @@ from app.worker import *
 def index():
     return jsonify(spisochek)
 
+
 @app.route('/rec/start', methods=['POST'])
 def start_rec():
-    global last_id, spisochek
-
-    last_id += 1
-    id = last_id
-    spisochek['recordings'][id] = request.get_json()['address']
-
-    #spisochek['recordings'].append(id_address_pair)
+    id = start_rec_with_address(request.get_json()['address'])
 
     return {'id': id}
 
+
 @app.route('/rec/stop', methods=['POST'])
 def stop_rec():
-    global last_id
-
     required_id = request.get_json()['id']
     video_address = stop_rec_by_id(required_id)
 
