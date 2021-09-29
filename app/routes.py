@@ -1,21 +1,10 @@
 from flask.globals import request
 from flask.json import jsonify
 from app import app
+from app.worker import *
 
 
-# it should be {'id': 'address'}
-spisochek = {'recordings': []}
-last_id = 0
-
-def stop_rec_by_id(id):
-    global spisochek
-    # blablabla
-    # work...
-    address = spisochek['recordings'].pop(id)
-
-    # address of the video
-    return 'https://www.youtube.com/watch?v=-mZICVd-Oek'
-
+# temp dev route
 @app.route('/')
 @app.route('/index')
 def index():
@@ -27,15 +16,15 @@ def start_rec():
 
     last_id += 1
     id = last_id
-    id_address_pair = {id: request.get_json()['address']}
+    spisochek['recordings'][id] = request.get_json()['address']
 
-    spisochek['recordings'].append(id_address_pair)
+    #spisochek['recordings'].append(id_address_pair)
 
     return {'id': id}
 
 @app.route('/rec/stop', methods=['POST'])
 def stop_rec():
-    global last_id, spisochek
+    global last_id
 
     required_id = request.get_json()['id']
     video_address = stop_rec_by_id(required_id)
