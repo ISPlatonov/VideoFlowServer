@@ -3,12 +3,13 @@ from flask.json import jsonify
 from app import app
 from app.worker import *
 
-
+'''
 # temp dev route
 @app.route('/')
 @app.route('/index')
 def index():
-    return jsonify(spisochek)
+    return jsonify(rec_list)
+'''
 
 
 @app.route('/rec/start', methods=['POST'])
