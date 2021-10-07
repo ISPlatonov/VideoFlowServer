@@ -1,0 +1,1 @@
+gst-launch-1.0 -eq rtspsrc location=$1 ! queue ! decodebin ! x264enc ! mp4mux ! filesink location=recordings/rec_$2.mp4
