@@ -1,4 +1,4 @@
-import subprocess, signal, time, os
+import subprocess, time
 
 
 # it should be {'id': 'address'}
@@ -20,7 +20,7 @@ def stop_rec_by_id(id):
 def start_rec_with_address(address):
     global rec_list
 
-    command = ['sh', 'app/scripts/start_rec.sh', address, '{}'.format(time.time_ns())]
+    command = ['sh', 'app/scripts/start_rec.sh', address, '{}'.format(time.time().__str__())]
     process = subprocess.Popen(args=command, stdout=subprocess.PIPE)
     id = process.pid
 
