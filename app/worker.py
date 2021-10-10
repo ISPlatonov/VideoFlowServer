@@ -5,7 +5,7 @@ import subprocess, time
 rec_list = {'recordings': {}}
 
 def stop_rec_by_id(id):
-    global spisochek
+    global rec_list
     address = rec_list['recordings'][id]
 
     subprocess.run(['sh', 'app/scripts/stop_rec.sh', '{}'.format(id)])
